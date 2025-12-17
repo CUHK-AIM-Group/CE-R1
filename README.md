@@ -1,9 +1,9 @@
 <!-- <img src="./imgs/logo.png" alt="" width="130" > -->
 
 
-<div align="center" style="font-size:26px; font-weight:bold; text-align:justify;">
+<h1 align="center" style="font-size:26px; font-weight:bold; text-align:justify;">
   <img src="./imgs/logo.png" alt="" width="80" > An Adaptive Foundation Model with Evidence-based Clinical Reasoning for Gastroenterology
-</div>
+</h1>
 
 Wenting Chen<sup>1,\*</sup> Shengyuan Liu<sup>2,\*</sup> Boyun Zheng<sup>2</sup> Jipeng Zhang<sup>3</sup> Wenxuan Wang<sup>3</sup> Dejun Fan<sup>4</sup> Raymond Shing Yan Tang<sup>5</sup> Yuen Tung Lam<sup>6</sup> Shannon Melissa Chan<sup>7</sup> Lei Xing<sup>1</sup> Jiancong Hu<sup>4,†</sup> Yixuan Yuan<sup>2,†</sup> 
 
@@ -56,3 +56,6 @@ python3 router.py
 ```
 ## 🎈 Acknowledgements
 Some source code of ours is borrowed from [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), [Multimodal-BERT-in-Medical-Image-and-Text-Classification](https://github.com/AxelAllen/Multimodal-BERT-in-Medical-Image-and-Text-Classification). Thanks for their contributions.
+
+## 📮 Contact
+Please contact me if you have any question (wentchen AT stanford dot edu)
