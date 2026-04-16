@@ -1,0 +1,39 @@
+# model_name_or_path: models/qwen2_vl_lora_sft
+template: qwen2_vl
+model_name_or_path: Qwen/Qwen2-VL-7B-Instruct
+# adapter_name_or_path: saves/qwen2_vl-7b/lora/sft/checkpoint-2500
+adapter_name_or_path: saves/reason_new/qwen2_vl-7b/lora/sft_dsp_epoch_4_GPU_8_video_only
+  #saves/qwen2_vl-8b/lora/sft_dsp_epoch_4_video_only
+finetuning_type: lora
+
+
+# max_steps: 200000 #10000
+# buffer_size: 128
+# preprocessing_batch_size: 128
+# streaming: true
+# accelerator_config:
+#   dispatch_batches: false
+
+### method
+stage: sft
+do_predict: true
+# finetuning_type: lora
+
+### dataset
+eval_dataset: private-videoclip-normal_test_reason
+
+#identity,alpaca_en_demo
+# template: llama3
+cutoff_len: 8192 #4096
+max_samples: 200000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: results/reason_new/qwen2_vl-7b/lora/sft/private-videoclip-normal_test
+overwrite_output_dir: true
+
+### eval
+per_device_eval_batch_size: 18 #20
+predict_with_generate: true
+ddp_timeout: 180000000

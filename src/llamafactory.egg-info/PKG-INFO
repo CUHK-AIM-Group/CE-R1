@@ -1,0 +1,165 @@
+Metadata-Version: 2.4
+Name: llamafactory
+Version: 0.9.1.dev0
+Summary: Easy-to-use LLM fine-tuning framework
+Home-page: https://github.com/hiyouga/LLaMA-Factory
+Author: hiyouga
+Author-email: hiyouga@buaa.edu.cn
+License: Apache 2.0 License
+Keywords: LLaMA,BLOOM,Falcon,LLM,ChatGPT,transformer,pytorch,deep learning
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: transformers>=4.41.2
+Requires-Dist: datasets<=2.21.0,>=2.16.0
+Requires-Dist: accelerate<=0.34.2,>=0.30.1
+Requires-Dist: peft<=0.12.0,>=0.11.1
+Requires-Dist: trl<=0.9.6,>=0.8.6
+Requires-Dist: gradio<5.0.0,>=4.0.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: scipy
+Requires-Dist: einops
+Requires-Dist: sentencepiece
+Requires-Dist: tiktoken
+Requires-Dist: protobuf
+Requires-Dist: uvicorn
+Requires-Dist: pydantic
+Requires-Dist: fastapi
+Requires-Dist: sse-starlette
+Requires-Dist: matplotlib>=3.7.0
+Requires-Dist: fire
+Requires-Dist: packaging
+Requires-Dist: pyyaml
+Requires-Dist: numpy<2.0.0
+Requires-Dist: av
+Provides-Extra: torch
+Requires-Dist: torch>=1.13.1; extra == "torch"
+Provides-Extra: torch-npu
+Requires-Dist: torch==2.1.0; extra == "torch-npu"
+Requires-Dist: torch-npu==2.1.0.post3; extra == "torch-npu"
+Requires-Dist: decorator; extra == "torch-npu"
+Provides-Extra: metrics
+Requires-Dist: nltk; extra == "metrics"
+Requires-Dist: jieba; extra == "metrics"
+Requires-Dist: rouge-chinese; extra == "metrics"
+Provides-Extra: deepspeed
+Requires-Dist: deepspeed<=0.14.4,>=0.10.0; extra == "deepspeed"
+Provides-Extra: liger-kernel
+Requires-Dist: liger-kernel; extra == "liger-kernel"
+Provides-Extra: bitsandbytes
+Requires-Dist: bitsandbytes>=0.39.0; extra == "bitsandbytes"
+Provides-Extra: hqq
+Requires-Dist: hqq; extra == "hqq"
+Provides-Extra: eetq
+Requires-Dist: eetq; extra == "eetq"
+Provides-Extra: gptq
+Requires-Dist: optimum>=1.17.0; extra == "gptq"
+Requires-Dist: auto-gptq>=0.5.0; extra == "gptq"
+Provides-Extra: awq
+Requires-Dist: autoawq; extra == "awq"
+Provides-Extra: aqlm
+Requires-Dist: aqlm[gpu]>=1.1.0; extra == "aqlm"
+Provides-Extra: vllm
+Requires-Dist: vllm<=0.6.3,>=0.4.3; extra == "vllm"
+Provides-Extra: galore
+Requires-Dist: galore-torch; extra == "galore"
+Provides-Extra: badam
+Requires-Dist: badam>=1.2.1; extra == "badam"
+Provides-Extra: adam-mini
+Requires-Dist: adam-mini; extra == "adam-mini"
+Provides-Extra: qwen
+Requires-Dist: transformers_stream_generator; extra == "qwen"
+Provides-Extra: modelscope
+Requires-Dist: modelscope; extra == "modelscope"
+Provides-Extra: openmind
+Requires-Dist: openmind; extra == "openmind"
+Provides-Extra: dev
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+<!-- <img src="./imgs/logo.png" alt="" width="130" > -->
+
+
+<h1 align="center" style="font-size:26px; font-weight:bold; text-align:justify;">
+  <img src="./imgs/logo.png" alt="" width="80" > An Adaptive Foundation Model with Evidence-based Clinical Reasoning for Gastroenterology
+</h1>
+
+Wenting Chen<sup>1,\*</sup> Shengyuan Liu<sup>2,\*</sup> Boyun Zheng<sup>2</sup> Jipeng Zhang<sup>3</sup> Wenxuan Wang<sup>3</sup> Dejun Fan<sup>4</sup> Raymond Shing Yan Tang<sup>5</sup> Yuen Tung Lam<sup>6</sup> Shannon Melissa Chan<sup>7</sup> Lei Xing<sup>1</sup> Jiancong Hu<sup>4,†</sup> Yixuan Yuan<sup>2,†</sup> 
+
+<sup>1</sup> Department of Radiation Oncology, Stanford University, CA, USA  
+<sup>2</sup> Department of Electronic Engineering, The Chinese University of Hong Kong, Hong Kong SAR, China  
+<sup>3</sup> Department of Computer Science and Engineering, The Chinese University of Hong Kong, Hong Kong SAR, China  
+<sup>4</sup> The Sixth Affiliated Hospital, Sun Yat-sen University, Guangzhou, China  
+<sup>5</sup> Department of Medicine and Therapeutics, The Chinese University of Hong Kong, Hong Kong SAR, China  
+<sup>6</sup> The Nethersole School of Nursing, The Chinese University of Hong Kong, Hong Kong SAR, China  
+<sup>7</sup> Department of Surgery, The Chinese University of Hong Kong, Hong Kong SAR, China  
+<sup>\*</sup> These authors contributed equally.  
+<sup>†</sup> Correspondence to Yixuan Yuan and Jiancong Hu.
+
+
+<p align="center">
+  <img src="./imgs/method_evaluation.png" alt="" width="85%" >
+</p>
+
+
+## 📄 Introduction
+Gastrointestinal diseases affect 2.86 billion people globally, with capsule endoscopy (CE) providing crucial diagnostics but requiring manual review of over 60,000 frames per examination, a process associated with 17.4% disease miss rates. While artificial intelligence shows promise for CE analysis, existing endoscopic vision-language models (VLMs) lack multi-video understanding capability and cannot replicate the systematic multi-evidence reasoning that gastroenterologists integrate findings across anatomical regions to synthesize cohesive diagnoses.
+Here we introduce CE-R1, an adaptive foundation model with evidence-based clinical reasoning capabilities specifically designed for gastroenterology. CE-R1 incorporates a dynamic router that assesses query complexity and selectively routes cases to either a lightweight model for straightforward questions or a deep reasoning model that generates transparent, step-by-step diagnostic thought processes. To enable this capability, we construct CE-Bench, the first large-scale multimodal CE dataset comprising 502,066 visual question-answering pairs with chain-of-thought reasoning annotations, spanning 70 fine-grained clinical sub-tasks across five core diagnostic categories: anatomy identification, endoscopic findings recognition, disease diagnosis, treatment planning, and medical report generation.
+Comprehensive evaluation on both in-distribution and out-of-distribution datasets from four independent hospitals demonstrates that CE-R1 achieves 86.7% overall accuracy, substantially outperforming state-of-the-art VLMs (best baseline: 24.6%) and surpassing average physician performance (39.9%) by 21.1\%. CE-R1 maintains superior generalization across external validation sets (65.1–81.9\% accuracy). Critically, the multi-evidence clinical reasoning capability delivers substantial performance gains in complex diagnostic tasks: CE-R1 surpasses the model without reasoning by 8.5% in disease diagnosis, demonstrating the clinical value of transparent, step-by-step diagnostic processes. These results establish CE-R1 as a robust foundation model for comprehensive CE analysis with immediate applications in clinical decision support and medical education.
+
+## ⚙️ Setup
+Our work is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [Multimodal-BERT-in-Medical-Image-and-Text-Classification](https://github.com/AxelAllen/Multimodal-BERT-in-Medical-Image-and-Text-Classification). We use LLaMA-Factory to train our CE-R1-Lite and CE-R1-Deep, and use Multimodal-BERT to train the dynamic router.
+
+### Environment Setup
+
+Install the requirements:
+```bash
+pip install -e ".[torch,metrics]"
+```
+<small>*Please refer to LLaMA-Factory and Multimodal-BERT for more environment details.</small>
+
+
+## 🚀 Inference
+
+### CE-R1-Lite
+```
+llamafactory-cli train examples/inference/WCE_NEW_DATA/qwen2_vl_lora_sft_kvasir-capsule-videoclip_test.yaml
+```
+### CE-R1-Deep
+```
+llamafactory-cli train examples/inference/WCE_NEW_DATA_REASON/qwen2_vl_lora_sft_kvasir-capsule-videoclip_test.yaml
+```
+### CE-R1 (w/ Router)
+```
+python3 router.py
+```
+## 🎈 Acknowledgements
+Some source code of ours is borrowed from [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), [Multimodal-BERT-in-Medical-Image-and-Text-Classification](https://github.com/AxelAllen/Multimodal-BERT-in-Medical-Image-and-Text-Classification). Thanks for their contributions.
+
+## 📮 Contact
+Please contact me if you have any question (wentchen AT stanford dot edu)

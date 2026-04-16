@@ -29,33 +29,85 @@ Here we introduce CE-R1, an adaptive foundation model with evidence-based clinic
 Comprehensive evaluation on both in-distribution and out-of-distribution datasets from four independent hospitals demonstrates that CE-R1 achieves 86.7% overall accuracy, substantially outperforming state-of-the-art VLMs (best baseline: 24.6%) and surpassing average physician performance (39.9%) by 21.1\%. CE-R1 maintains superior generalization across external validation sets (65.1–81.9\% accuracy). Critically, the multi-evidence clinical reasoning capability delivers substantial performance gains in complex diagnostic tasks: CE-R1 surpasses the model without reasoning by 8.5% in disease diagnosis, demonstrating the clinical value of transparent, step-by-step diagnostic processes. These results establish CE-R1 as a robust foundation model for comprehensive CE analysis with immediate applications in clinical decision support and medical education.
 
 ## ⚙️ Setup
-Our work is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [Multimodal-BERT-in-Medical-Image-and-Text-Classification](https://github.com/AxelAllen/Multimodal-BERT-in-Medical-Image-and-Text-Classification). We use LLaMA-Factory to train our CE-R1-Lite and CE-R1-Deep, and use Multimodal-BERT to train the dynamic router.
 
 ### Environment Setup
 
 Install the requirements:
+
 ```bash
+conda env create -f environment.yml
+pip install git+https://github.com/huggingface/transformers.git@v4.49.0
+pip install -e .
 pip install -e ".[torch,metrics]"
 ```
-<small>*Please refer to LLaMA-Factory and Multimodal-BERT for more environment details.</small>
 
+## Download Dataset and Models
+Please download the public datasets and our pre-trained models from this repository (https://huggingface.co/datasets/Valentina007/CE_R1_data/).
+
+Please make sure this folder (```CE_R1_data```) is under the same directory of current folder (```CE_R1```)
+```bash
+hf download Valentina007/CE_R1_data
+```
+
+Directory structure of this folder (```CE_R1_data```).
+
+./anno and ./data include the part of data in CE-Bench. These folders include the public datasets, including kid-v1, kid-v2, and kvasir-capsule datasets.
+
+./models includes the pre-trained models of CE-R1.
+
+├── anno <br>
+│   ├── kid-v1-image_test.json <br>
+│   ├── kid-v2-image_test.json <br>
+│   ├── kvasir-capsule-image_test.json <br>
+│   └── kvasir-capsule-videoclip_test.json <br>
+├── data <br>
+│   ├── kid-dataset-1 <br>
+│   ├── kid-dataset-2 <br>
+│   ├── kvasir-capsule-labelled_images <br>
+│   └── video_clips_v1 <br>
+└── models <br>
+    ├── deep <br>
+    ├── lite <br>
+    └── router_models <br>
 
 ## 🚀 Inference
+```bash
 
-### CE-R1-Lite
+INPUT_PATH_IMG="/path/to/input_image.png"
+QUESTION_IMG="You question can be put here."
+
+python test_single.py --path "$INPUT_PATH_IMG" --question "$QUESTION_IMG"
+
 ```
-llamafactory-cli train examples/inference/WCE_NEW_DATA/qwen2_vl_lora_sft_kvasir-capsule-videoclip_test.yaml
+All the results will be saved at: ./results/model_output   
+
+In ```./results/model_output/final_results.json```, you can get the output as follows:
+```bash
+{
+  "input_path": "/path/to/input_image.png",
+  "question": "You question",
+  "probability": 0.3223,
+  "model_version": "lite",
+  "model_type": "lite",
+  "media_type": "image",
+  "generated_response": "Final output from CE-R1"
+}
 ```
-### CE-R1-Deep
+This result mentions the input of the CE-R1, the probability from router, model_type we used, and output of the CE-R1. 
+When the probability from router is larger than 0.5, we use the CE-R1-Deep. Otherwise, we use CE-R1-Lite.
+
+## Quick Start
+Here, we provide an example about the WCE image or video as input.
+```bash
+sh ./lanuch/test_img_single.sh
 ```
-llamafactory-cli train examples/inference/WCE_NEW_DATA_REASON/qwen2_vl_lora_sft_kvasir-capsule-videoclip_test.yaml
-```
-### CE-R1 (w/ Router)
-```
-python3 router.py
-```
+
+
+
 ## 🎈 Acknowledgements
-Some source code of ours is borrowed from [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), [Multimodal-BERT-in-Medical-Image-and-Text-Classification](https://github.com/AxelAllen/Multimodal-BERT-in-Medical-Image-and-Text-Classification). Thanks for their contributions.
+[LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)
+
+[Multimodal-BERT-in-Medical-Image-and-Text-Classification](https://github.com/AxelAllen/Multimodal-BERT-in-Medical-Image-and-Text-Classification)
 
 ## 📮 Contact
 Please contact me if you have any question (wentchen AT stanford dot edu)

@@ -1,0 +1,17 @@
+[
+  {
+    "videos": [
+      "./test_data/kvasir-capsule-videoclip/video_1192.mp4"
+    ],
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<video>Can you identify the anatomical landmark in this WCE video?"
+      },
+      {
+        "from": "gpt",
+        "value": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,2 @@
+,id,conversations,prob,label,videos,data_src,complex_pred,complex_prob
+0,single_sample_0,"[{'from': 'human', 'value': 'Based on this WCE video, what type of abnormal finding can be identified?'}, {'from': 'gpt', 'value': ''}]",1,dummy,['/NAS_REMOTE/vicky/wt/codes/github/CE_R1_data/data/video_clips_v1/kvasir-capsule-videoclip/video_4874.mp4'],tmpppxqku5m.json,0.0,0.828052

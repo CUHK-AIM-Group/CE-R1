@@ -1,0 +1,55 @@
+### model
+model_name_or_path: Qwen/Qwen2-VL-7B-Instruct
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+
+### dataset
+dataset: kid-v2-image,kvasir-capsule-image,private_image_finding,private_image_organ,WCEBleedGen-image
+#,private_video-finding,private_video-organ
+#,private_video-organ,kvasir-capsule-video # ,private_video,private_video-finding,kvasir-capsule-video
+#mllm_demo,identity  # video: mllm_video_demo
+template: qwen2_vl
+cutoff_len: 4096 #1024
+max_samples: 250000 #1000
+overwrite_cache: true
+preprocessing_num_workers: 16
+# preprocessing_batch_size: 1 #16
+
+# max_steps: 2500 #10000
+# # max_steps: 10000 #10000
+# buffer_size: 128
+# preprocessing_batch_size: 128
+# streaming: true
+# accelerator_config:
+#   dispatch_batches: false
+
+### output
+output_dir: saves/qwen2_vl-7b/lora/sft_img_only #_bs_20_step_1w
+# output_dir: saves/qwen2_vl-7b/lora/sft_bs_20_step_1w
+logging_steps: 10
+save_steps: 100
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 20 #16 #12 #8 #4 #1
+gradient_accumulation_steps: 2 #8
+learning_rate: 1.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+
+### eval
+val_size: 0.1
+# val_size: 8000 #0.1
+per_device_eval_batch_size: 20 #16 #12 #8 #4 #1
+eval_strategy: steps
+eval_steps: 100
+
+

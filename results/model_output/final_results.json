@@ -1,0 +1,18 @@
+{
+  "input_path": "./test_data/kid-dataset-1/bleeding3.png",
+  "question": "Which abnormality is present in this WCE image?",
+  "probability": 0.32237961888313293,
+  "model_version": "lite",
+  "model_type": "lite",
+  "media_type": "image",
+  "generated_response": "This WCE image exhibits abnormal endoscopic findings. The abnormality is the active bleeding."
+}
+{
+  "input_path": "./test_data/kvasir-capsule-videoclip/video_1192.mp4",
+  "question": "Can you identify the anatomical landmark in this WCE video?",
+  "probability": 0.8398572206497192,
+  "model_version": "deep",
+  "model_type": "deep",
+  "media_type": "video",
+  "generated_response": "<think>\nOkay, let's take a closer look at this WCE (Wireless Capsule Endoscopy) video. The images show a structure that seems to be a junction between two different types of tissue. Hmm, the texture and color are quite distinct, suggesting it's not just any part of the intestine. Oh, I notice there's a sort of lip or fold-like structure here. This reminds me of the transition area between the small intestine and the large intestine. Also, the yellowish substance and the appearance of villi suggest it's close to the ileum, which is the last part of the small intestine. Wait, that's it! This looks like the ileocecal valve, which is the valve that separates the ileum from the cecum in the large intestine. The characteristic fold and the surrounding tissue match this description perfectly. So, I'm confident that the anatomical landmark in this WCE video is the ileocecal valve.\n</think>\n<answer>\nThe anatomical landmark in this WCE video is the ileocecal valve.\n</answer>"
+}

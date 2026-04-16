@@ -1,0 +1,17 @@
+[
+  {
+    "images": [
+      "./test_data/kid-dataset-1/bleeding3.png"
+    ],
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<image>Which abnormality is present in this WCE image?"
+      },
+      {
+        "from": "gpt",
+        "value": ""
+      }
+    ]
+  }
+]
